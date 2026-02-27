@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react'
-import { Plus, Trash2, Download, FileText } from 'lucide-react'
+import { Plus, Trash2, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { type Invoice, type LineItem, newLineItem, defaultInvoice } from '@/lib/types'
 import { loadInvoice, saveInvoice } from '@/lib/store'
@@ -109,11 +109,8 @@ export default function Home() {
       {/* ── SIDEBAR ── */}
       <aside className="w-full md:w-[380px] md:h-screen bg-white border-b md:border-b-0 md:border-r border-[#E5E5E5] flex flex-col shrink-0 print:hidden">
         {/* Logo */}
-        <div className="flex items-center gap-2.5 px-6 py-[22px] border-b border-[#E5E5E5] shrink-0">
-          <div className="w-7 h-7 bg-[#111111] rounded-md flex items-center justify-center shrink-0">
-            <FileText size={13} color="white" strokeWidth={2.5} />
-          </div>
-          <span className="font-bold text-[17px] text-[#111111] tracking-tight">invoi</span>
+        <div className="flex items-center px-6 py-[22px] border-b border-[#E5E5E5] shrink-0">
+          <span className="font-bold text-[17px] text-[#111111] tracking-tight">invoi.xyz</span>
         </div>
 
         {/* Scrollable form */}
