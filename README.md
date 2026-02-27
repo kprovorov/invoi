@@ -1,5 +1,7 @@
 # invoi.xyz
 
+![invoi.xyz — Free Invoice Generator](https://invoi.xyz/opengraph-image)
+
 Free, open-source invoice generator. No account, no backend, no tracking beyond analytics. Create, preview, and download professional PDF invoices in seconds — everything happens in your browser.
 
 **Live at [invoi.xyz](https://invoi.xyz)**
