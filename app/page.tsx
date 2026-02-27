@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, type ReactNode } from 'react'
+import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react'
 import { Plus, Trash2, Download, FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { type Invoice, type LineItem, newLineItem, defaultInvoice } from '@/lib/types'
@@ -84,6 +84,25 @@ export default function Home() {
   }, [])
 
   const subtotal = invoice.lineItems.reduce((sum, item) => sum + item.quantity * item.rate, 0)
+
+  const PAPER_W = 600
+  const PAPER_H = Math.round(PAPER_W * 297 / 210) // 849 — true A4
+
+  const canvasRef = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const el = canvasRef.current
+    if (!el) return
+    const update = () => {
+      const available = el.clientWidth - 32 // 16px breathing room each side
+      setScale(Math.min(available / PAPER_W, 1))
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [PAPER_W])
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen md:h-screen md:overflow-hidden bg-[#F5F5F5]">
@@ -273,9 +292,13 @@ export default function Home() {
       </aside>
 
       {/* ── PREVIEW CANVAS ── */}
-      <main className="md:flex-1 bg-[#EBEBEB] overflow-auto flex items-center justify-center p-4 md:p-0 md:items-start print:block print:bg-white print:overflow-visible">
-        {/* Invoice paper */}
-        <div className="bg-white w-full max-w-[600px] aspect-[210/297] my-4 md:my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-6 py-6 md:px-14 md:py-14 overflow-y-auto print:shadow-none print:rounded-none print:w-full print:aspect-auto print:m-0 print:px-[15mm] print:py-[15mm]">
+      <main ref={canvasRef} className="md:flex-1 bg-[#EBEBEB] overflow-auto flex flex-col items-center py-8 print:block print:bg-white print:overflow-visible print:py-0">
+        {/* Scale wrapper — occupies the visual space of the scaled paper */}
+        <div style={{ width: PAPER_W * scale, height: PAPER_H * scale }}>
+        {/* Invoice paper — fixed natural size, scaled via transform */}
+        <div
+          style={{ width: PAPER_W, height: PAPER_H, transform: `scale(${scale})`, transformOrigin: 'top left' }}
+          className="bg-white rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 print:!transform-none print:shadow-none print:rounded-none print:!w-full print:!h-auto print:m-0 print:px-[15mm] print:py-[15mm]">
           {/* Header */}
           <div className="flex justify-between items-start mb-12">
             <div>
@@ -390,6 +413,7 @@ export default function Home() {
             </div>
           </div>
 
+        </div>
         </div>
 
       </main>
