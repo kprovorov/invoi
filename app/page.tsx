@@ -238,15 +238,15 @@ export default function Home() {
               Invoice Details
             </h3>
             <div className="space-y-2">
-              <div className="flex gap-2">
-                <Field label="Invoice #" className="flex-1">
+              <div className="grid grid-cols-2 gap-2">
+                <Field label="Invoice #">
                   <Input
                     value={invoice.invoiceNumber}
                     onChange={(e) => update('invoiceNumber', e.target.value)}
                     placeholder="INV-0001"
                   />
                 </Field>
-                <Field label="Issue Date" className="flex-1">
+                <Field label="Issue Date">
                   <Input
                     type="date"
                     value={invoice.issueDate}
@@ -254,15 +254,15 @@ export default function Home() {
                   />
                 </Field>
               </div>
-              <div className="flex gap-2">
-                <Field label="Due Date" className="flex-1">
+              <div className="grid grid-cols-2 gap-2">
+                <Field label="Due Date">
                   <Input
                     type="date"
                     value={invoice.dueDate}
                     onChange={(e) => update('dueDate', e.target.value)}
                   />
                 </Field>
-                <Field label="Currency" className="flex-1">
+                <Field label="Currency">
                   <Select value={invoice.currency} onValueChange={(v) => update('currency', v)}>
                     <SelectTrigger>
                       <SelectValue />
