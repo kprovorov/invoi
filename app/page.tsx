@@ -85,8 +85,10 @@ export default function Home() {
 
   const subtotal = invoice.lineItems.reduce((sum, item) => sum + item.quantity * item.rate, 0)
 
-  const PAPER_W = 600
-  const PAPER_H = Math.round(PAPER_W * 297 / 210) // 849 — true A4
+  // A4 in CSS pixels at 96dpi: 210mm × 96/25.4 = 794px, 297mm × 96/25.4 = 1123px
+  // This ensures preview and print are pixel-identical
+  const PAPER_W = 794
+  const PAPER_H = 1123
 
   const canvasRef = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(1)
@@ -291,11 +293,11 @@ export default function Home() {
       {/* ── PREVIEW CANVAS ── */}
       <main ref={canvasRef} className="md:flex-1 bg-[#EBEBEB] overflow-auto flex flex-col items-center py-8 print:block print:bg-white print:overflow-visible print:py-0">
         {/* Scale wrapper — occupies the visual space of the scaled paper */}
-        <div style={{ width: PAPER_W * scale, height: PAPER_H * scale }}>
+        <div style={{ width: PAPER_W * scale, height: PAPER_H * scale }} className="print:!w-full print:!h-auto">
         {/* Invoice paper — fixed natural size, scaled via transform */}
         <div
           style={{ width: PAPER_W, height: PAPER_H, transform: `scale(${scale})`, transformOrigin: 'top left' }}
-          className="bg-white rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 print:!transform-none print:shadow-none print:rounded-none print:!w-full print:!h-auto print:m-0 print:px-[15mm] print:py-[15mm]">
+          className="bg-white rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 print:!transform-none print:shadow-none print:rounded-none print:!w-full print:!h-auto print:m-0">
           {/* Header */}
           <div className="flex justify-between items-start mb-12">
             <div>
