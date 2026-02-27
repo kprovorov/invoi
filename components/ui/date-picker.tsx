@@ -2,21 +2,13 @@
 
 import * as React from "react"
 import { CalendarIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, formatDate } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 function toDate(value: string): Date | undefined {
   if (!value) return undefined
   return new Date(value + 'T00:00:00')
-}
-
-function formatDisplay(value: string): string {
-  return new Date(value + 'T00:00:00').toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
 }
 
 interface DatePickerProps {
@@ -39,7 +31,7 @@ function DatePicker({ value, onChange, placeholder = 'Pick a date', className }:
             className
           )}
         >
-          <span>{value ? formatDisplay(value) : placeholder}</span>
+          <span>{value ? formatDate(value) : placeholder}</span>
           <CalendarIcon size={13} className="text-[#888888] shrink-0" />
         </button>
       </PopoverTrigger>
