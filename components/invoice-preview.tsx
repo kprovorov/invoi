@@ -111,10 +111,10 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
               <span className="w-14 text-[10px] font-semibold text-[#111111] tracking-[0.07em] uppercase text-center">
                 Qty
               </span>
-              <span className="w-24 text-[10px] font-semibold text-[#111111] tracking-[0.07em] uppercase text-right">
+              <span className="w-32 text-[10px] font-semibold text-[#111111] tracking-[0.07em] uppercase text-right">
                 Rate
               </span>
-              <span className="w-24 text-[10px] font-semibold text-[#111111] tracking-[0.07em] uppercase text-right">
+              <span className="w-32 text-[10px] font-semibold text-[#111111] tracking-[0.07em] uppercase text-right">
                 Amount
               </span>
             </div>
@@ -126,10 +126,10 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
                 <span className="w-14 text-[13px] text-[#888888] text-center">
                   {item.quantity}
                 </span>
-                <span className="w-24 text-[13px] text-[#888888] text-right">
+                <span className="w-32 text-[13px] text-[#888888] text-right">
                   {formatCurrency(item.rate, invoice.currency)}
                 </span>
-                <span className="w-24 text-[13px] font-medium text-[#111111] text-right">
+                <span className="w-32 text-[13px] font-medium text-[#111111] text-right">
                   {formatCurrency(item.quantity * item.rate, invoice.currency)}
                 </span>
               </div>
@@ -140,14 +140,14 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
           <div className="flex flex-col items-end gap-2 mb-12">
             <div className="flex gap-8 items-center">
               <span className="text-[12px] text-[#888888]">Subtotal</span>
-              <span className="text-[12px] font-medium text-[#111111] w-24 text-right">
+              <span className="text-[12px] font-medium text-[#111111] w-32 text-right">
                 {formatCurrency(subtotal, invoice.currency)}
               </span>
             </div>
             <div className="w-48 h-px bg-[#E5E5E5]" />
             <div className="flex gap-8 items-center">
               <span className="text-[15px] font-bold text-[#111111] tracking-tight">Total</span>
-              <span className="text-[20px] font-bold text-[#111111] tracking-tight w-24 text-right">
+              <span className="text-[20px] font-bold text-[#111111] tracking-tight w-32 text-right">
                 {formatCurrency(subtotal, invoice.currency)}
               </span>
             </div>
