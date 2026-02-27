@@ -39,7 +39,7 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
         >
           {/* Header */}
           <div className="flex justify-between items-start mb-12">
-            <div>
+            <div className="max-w-xs">
               <p className="font-bold text-[26px] text-[#111111] tracking-tight leading-none">
                 {invoice.fromName || 'Your Company'}
               </p>
@@ -65,7 +65,7 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
 
           {/* Bill To + Dates */}
           <div className="flex justify-between items-start mb-10">
-            <div>
+            <div className="max-w-xs">
               <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-1.5">
                 Bill To
               </p>
