@@ -24,7 +24,8 @@ export interface Invoice {
 }
 
 export function newLineItem(): LineItem {
-  return { id: crypto.randomUUID(), description: '', quantity: 1, rate: 0 }
+  const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`
+  return { id, description: '', quantity: 1, rate: 0 }
 }
 
 export const defaultInvoice: Invoice = {
