@@ -26,7 +26,7 @@ function Field({
   className?: string
 }) {
   return (
-    <div className={cn('flex flex-col gap-1', className)}>
+    <div className={cn('flex flex-col gap-1 min-w-0', className)}>
       <Label>{label}</Label>
       {children}
     </div>
@@ -249,6 +249,7 @@ export default function Home() {
                 <Field label="Issue Date">
                   <Input
                     type="date"
+                    className="overflow-hidden"
                     value={invoice.issueDate}
                     onChange={(e) => update('issueDate', e.target.value)}
                   />
@@ -258,6 +259,7 @@ export default function Home() {
                 <Field label="Due Date">
                   <Input
                     type="date"
+                    className="overflow-hidden"
                     value={invoice.dueDate}
                     onChange={(e) => update('dueDate', e.target.value)}
                   />
