@@ -275,7 +275,7 @@ export default function Home() {
       {/* ── PREVIEW CANVAS ── */}
       <main className="flex-1 relative bg-[#EBEBEB] overflow-auto flex items-start justify-center print:block print:bg-white print:overflow-visible">
         {/* Invoice paper */}
-        <div className="bg-white w-[600px] my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 print:shadow-none print:rounded-none print:w-full print:m-0 print:p-0">
+        <div className="bg-white w-[600px] my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 print:shadow-none print:rounded-none print:w-full print:m-0 print:px-[15mm] print:py-[15mm]">
           {/* Header */}
           <div className="flex justify-between items-start mb-12">
             <div>
