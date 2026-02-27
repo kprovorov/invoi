@@ -16,6 +16,7 @@ export interface Invoice {
   invoiceNumber: string
   issueDate: string
   dueDate: string
+  currency: string
   lineItems: LineItem[]
   bankName: string
   bankAccount: string
@@ -37,6 +38,7 @@ export const defaultInvoice: Invoice = {
   invoiceNumber: 'INV-0001',
   issueDate: new Date().toISOString().split('T')[0],
   dueDate: '',
+  currency: 'USD',
   lineItems: [newLineItem()],
   bankName: '',
   bankAccount: '',

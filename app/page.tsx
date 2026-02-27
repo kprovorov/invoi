@@ -26,8 +26,16 @@ function Field({
   )
 }
 
-function formatCurrency(amount: number) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
+const CURRENCIES = [
+  'USD', 'EUR', 'GBP', 'CHF', 'CAD', 'AUD', 'NZD',
+  'JPY', 'CNY', 'HKD', 'SGD', 'KRW',
+  'INR', 'AED', 'SAR', 'ILS',
+  'SEK', 'NOK', 'DKK', 'PLN', 'CZK', 'UAH',
+  'BRL', 'MXN', 'ZAR', 'TRY',
+]
+
+function formatCurrency(amount: number, currency: string) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: currency || 'USD' }).format(amount)
 }
 
 function formatDate(dateStr: string) {
@@ -251,14 +259,27 @@ export default function Home() {
                   />
                 </Field>
               </div>
-              <Field label="Due Date">
-                <input
-                  className={INPUT_CLASS}
-                  type="date"
-                  value={invoice.dueDate}
-                  onChange={(e) => update('dueDate', e.target.value)}
-                />
-              </Field>
+              <div className="flex gap-2">
+                <Field label="Due Date" className="flex-1">
+                  <input
+                    className={INPUT_CLASS}
+                    type="date"
+                    value={invoice.dueDate}
+                    onChange={(e) => update('dueDate', e.target.value)}
+                  />
+                </Field>
+                <Field label="Currency" className="flex-1">
+                  <select
+                    className={INPUT_CLASS}
+                    value={invoice.currency}
+                    onChange={(e) => update('currency', e.target.value)}
+                  >
+                    {CURRENCIES.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
+                </Field>
+              </div>
             </div>
           </section>
 
@@ -442,10 +463,10 @@ export default function Home() {
                   {item.quantity}
                 </span>
                 <span className="w-24 text-[13px] text-[#888888] text-right">
-                  {formatCurrency(item.rate)}
+                  {formatCurrency(item.rate, invoice.currency)}
                 </span>
                 <span className="w-24 text-[13px] font-medium text-[#111111] text-right">
-                  {formatCurrency(item.quantity * item.rate)}
+                  {formatCurrency(item.quantity * item.rate, invoice.currency)}
                 </span>
               </div>
             ))}
@@ -456,14 +477,14 @@ export default function Home() {
             <div className="flex gap-8 items-center">
               <span className="text-[12px] text-[#888888]">Subtotal</span>
               <span className="text-[12px] font-medium text-[#111111] w-24 text-right">
-                {formatCurrency(subtotal)}
+                {formatCurrency(subtotal, invoice.currency)}
               </span>
             </div>
             <div className="w-48 h-px bg-[#E5E5E5]" />
             <div className="flex gap-8 items-center">
               <span className="text-[15px] font-bold text-[#111111] tracking-tight">Total</span>
               <span className="text-[20px] font-bold text-[#111111] tracking-tight w-24 text-right">
-                {formatCurrency(subtotal)}
+                {formatCurrency(subtotal, invoice.currency)}
               </span>
             </div>
           </div>
