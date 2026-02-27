@@ -86,9 +86,9 @@ export default function Home() {
   const subtotal = invoice.lineItems.reduce((sum, item) => sum + item.quantity * item.rate, 0)
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#F5F5F5]">
+    <div className="flex flex-col md:flex-row min-h-screen md:h-screen md:overflow-hidden bg-[#F5F5F5]">
       {/* ── SIDEBAR ── */}
-      <aside className="w-[380px] h-screen bg-white border-r border-[#E5E5E5] flex flex-col shrink-0 print:hidden">
+      <aside className="w-full md:w-[380px] md:h-screen bg-white border-b md:border-b-0 md:border-r border-[#E5E5E5] flex flex-col shrink-0 print:hidden">
         {/* Logo */}
         <div className="flex items-center gap-2.5 px-6 py-[22px] border-b border-[#E5E5E5] shrink-0">
           <div className="w-7 h-7 bg-[#111111] rounded-md flex items-center justify-center shrink-0">
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
 
         {/* Scrollable form */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-7 min-h-0">
+        <div className="md:flex-1 md:overflow-y-auto px-6 py-6 space-y-7 md:min-h-0">
           {/* FROM */}
           <section className="space-y-3">
             <h3 className="text-[11px] font-semibold text-[#888888] tracking-widest uppercase">
@@ -273,9 +273,9 @@ export default function Home() {
       </aside>
 
       {/* ── PREVIEW CANVAS ── */}
-      <main className="flex-1 relative bg-[#EBEBEB] overflow-auto flex items-start justify-center print:block print:bg-white print:overflow-visible">
+      <main className="md:flex-1 bg-[#EBEBEB] overflow-auto flex items-center justify-center p-4 md:p-0 md:items-start print:block print:bg-white print:overflow-visible">
         {/* Invoice paper */}
-        <div className="bg-white w-[600px] aspect-[210/297] my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 overflow-y-auto print:shadow-none print:rounded-none print:w-full print:aspect-auto print:m-0 print:px-[15mm] print:py-[15mm]">
+        <div className="bg-white w-full max-w-[600px] aspect-[210/297] my-4 md:my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-6 py-6 md:px-14 md:py-14 overflow-y-auto print:shadow-none print:rounded-none print:w-full print:aspect-auto print:m-0 print:px-[15mm] print:py-[15mm]">
           {/* Header */}
           <div className="flex justify-between items-start mb-12">
             <div>
