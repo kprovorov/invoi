@@ -155,11 +155,17 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
           </div>
 
           {/* Bank details */}
-          {(invoice.bankName || invoice.bankAccount || invoice.bankSwift) && (
+          {(invoice.bankBeneficiary || invoice.bankName || invoice.bankAccount || invoice.bankSwift) && (
             <div className="border-t border-[#E5E5E5] pt-6 flex flex-col gap-1.5">
               <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-1">
                 Payment Details
               </p>
+              {invoice.bankBeneficiary && (
+                <div className="flex gap-2">
+                  <span className="text-[12px] text-[#888888] w-24 shrink-0">Beneficiary</span>
+                  <span className="text-[12px] text-[#111111]">{invoice.bankBeneficiary}</span>
+                </div>
+              )}
               {invoice.bankName && (
                 <div className="flex gap-2">
                   <span className="text-[12px] text-[#888888] w-24 shrink-0">Bank</span>
@@ -168,7 +174,7 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
               )}
               {invoice.bankAccount && (
                 <div className="flex gap-2">
-                  <span className="text-[12px] text-[#888888] w-24 shrink-0">Account</span>
+                  <span className="text-[12px] text-[#888888] w-24 shrink-0">IBAN</span>
                   <span className="text-[12px] text-[#111111]">{invoice.bankAccount}</span>
                 </div>
               )}

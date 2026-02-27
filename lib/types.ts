@@ -18,6 +18,7 @@ export interface Invoice {
   dueDate: string
   currency: string
   lineItems: LineItem[]
+  bankBeneficiary: string
   bankName: string
   bankAccount: string
   bankSwift: string
@@ -41,6 +42,7 @@ export const defaultInvoice: Invoice = {
   dueDate: '',
   currency: 'USD',
   lineItems: [newLineItem()],
+  bankBeneficiary: '',
   bankName: '',
   bankAccount: '',
   bankSwift: '',

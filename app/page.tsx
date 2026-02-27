@@ -138,6 +138,13 @@ export default function Home() {
           <section className="space-y-3">
             <SectionHeader>Bank Details</SectionHeader>
             <div className="space-y-2">
+              <Field label="Beneficiary">
+                <Input
+                  value={invoice.bankBeneficiary}
+                  onChange={(e) => update('bankBeneficiary', e.target.value)}
+                  placeholder="Acme Studio Ltd."
+                />
+              </Field>
               <Field label="Bank name">
                 <Input
                   value={invoice.bankName}
