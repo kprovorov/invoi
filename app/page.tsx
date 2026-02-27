@@ -275,7 +275,7 @@ export default function Home() {
       {/* ── PREVIEW CANVAS ── */}
       <main className="flex-1 relative bg-[#EBEBEB] overflow-auto flex items-start justify-center print:block print:bg-white print:overflow-visible">
         {/* Invoice paper */}
-        <div className="bg-white w-[600px] my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 print:shadow-none print:rounded-none print:w-full print:m-0 print:px-[15mm] print:py-[15mm]">
+        <div className="bg-white w-[600px] aspect-[210/297] my-10 rounded-sm shadow-[0_4px_32px_rgba(0,0,0,0.10),0_1px_4px_rgba(0,0,0,0.06)] px-14 py-14 overflow-y-auto print:shadow-none print:rounded-none print:w-full print:aspect-auto print:m-0 print:px-[15mm] print:py-[15mm]">
           {/* Header */}
           <div className="flex justify-between items-start mb-12">
             <div>
@@ -390,13 +390,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="flex justify-between items-end pt-6 border-t border-[#E5E5E5]">
-            <span className="text-[11px] text-[#BBBBBB]">Thank you for your business.</span>
-            {invoice.dueDate && (
-              <span className="text-[11px] text-[#BBBBBB]">Payment due within 30 days</span>
-            )}
-          </div>
         </div>
 
         {/* Canvas toolbar */}
