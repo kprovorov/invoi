@@ -148,6 +148,15 @@ export default function Home() {
                   placeholder="123 Design Ave, San Francisco"
                 />
               </Field>
+              <Field label="Phone">
+                <input
+                  className={INPUT_CLASS}
+                  type="tel"
+                  value={invoice.fromPhone}
+                  onChange={(e) => update('fromPhone', e.target.value)}
+                  placeholder="+1 234 567 8900"
+                />
+              </Field>
             </div>
           </section>
 
@@ -172,6 +181,47 @@ export default function Home() {
                   value={invoice.toEmail}
                   onChange={(e) => update('toEmail', e.target.value)}
                   placeholder="client@email.com"
+                />
+              </Field>
+              <Field label="Address">
+                <input
+                  className={INPUT_CLASS}
+                  value={invoice.toAddress}
+                  onChange={(e) => update('toAddress', e.target.value)}
+                  placeholder="456 Client St, New York"
+                />
+              </Field>
+            </div>
+          </section>
+
+          {/* BANK DETAILS */}
+          <section className="space-y-3">
+            <h3 className="text-[11px] font-semibold text-[#888888] tracking-widest uppercase">
+              Bank Details
+            </h3>
+            <div className="space-y-2">
+              <Field label="Bank name">
+                <input
+                  className={INPUT_CLASS}
+                  value={invoice.bankName}
+                  onChange={(e) => update('bankName', e.target.value)}
+                  placeholder="First National Bank"
+                />
+              </Field>
+              <Field label="Account number / IBAN">
+                <input
+                  className={INPUT_CLASS}
+                  value={invoice.bankAccount}
+                  onChange={(e) => update('bankAccount', e.target.value)}
+                  placeholder="GB29 NWBK 6016 1331 9268 19"
+                />
+              </Field>
+              <Field label="SWIFT / BIC">
+                <input
+                  className={INPUT_CLASS}
+                  value={invoice.bankSwift}
+                  onChange={(e) => update('bankSwift', e.target.value)}
+                  placeholder="NWBKGB2L"
                 />
               </Field>
             </div>
@@ -307,6 +357,9 @@ export default function Home() {
               {invoice.fromEmail && (
                 <p className="text-[12px] text-[#888888] mt-2">{invoice.fromEmail}</p>
               )}
+              {invoice.fromPhone && (
+                <p className="text-[12px] text-[#888888]">{invoice.fromPhone}</p>
+              )}
               {invoice.fromAddress && (
                 <p className="text-[12px] text-[#888888]">{invoice.fromAddress}</p>
               )}
@@ -332,6 +385,9 @@ export default function Home() {
               </p>
               {invoice.toEmail && (
                 <p className="text-[12px] text-[#888888] mt-0.5">{invoice.toEmail}</p>
+              )}
+              {invoice.toAddress && (
+                <p className="text-[12px] text-[#888888]">{invoice.toAddress}</p>
               )}
             </div>
             <div className="flex gap-8">
@@ -411,6 +467,33 @@ export default function Home() {
               </span>
             </div>
           </div>
+
+          {/* Bank details */}
+          {(invoice.bankName || invoice.bankAccount || invoice.bankSwift) && (
+            <div className="border-t border-[#E5E5E5] pt-6 flex flex-col gap-1.5">
+              <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-1">
+                Payment Details
+              </p>
+              {invoice.bankName && (
+                <div className="flex gap-2">
+                  <span className="text-[12px] text-[#888888] w-24 shrink-0">Bank</span>
+                  <span className="text-[12px] text-[#111111]">{invoice.bankName}</span>
+                </div>
+              )}
+              {invoice.bankAccount && (
+                <div className="flex gap-2">
+                  <span className="text-[12px] text-[#888888] w-24 shrink-0">Account</span>
+                  <span className="text-[12px] text-[#111111]">{invoice.bankAccount}</span>
+                </div>
+              )}
+              {invoice.bankSwift && (
+                <div className="flex gap-2">
+                  <span className="text-[12px] text-[#888888] w-24 shrink-0">SWIFT / BIC</span>
+                  <span className="text-[12px] text-[#111111]">{invoice.bankSwift}</span>
+                </div>
+              )}
+            </div>
+          )}
 
         </div>
         </div>
