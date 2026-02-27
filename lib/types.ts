@@ -17,6 +17,7 @@ export interface Invoice {
   issueDate: string
   dueDate: string
   currency: string
+  vatRate: number
   lineItems: LineItem[]
   bankBeneficiary: string
   bankName: string
@@ -41,6 +42,7 @@ export const defaultInvoice: Invoice = {
   issueDate: new Date().toISOString().split('T')[0],
   dueDate: '',
   currency: 'USD',
+  vatRate: 0,
   lineItems: [newLineItem()],
   bankBeneficiary: '',
   bankName: '',

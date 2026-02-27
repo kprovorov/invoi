@@ -24,6 +24,8 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
   }, [])
 
   const subtotal = invoice.lineItems.reduce((sum, item) => sum + item.quantity * item.rate, 0)
+  const vat = subtotal * (invoice.vatRate / 100)
+  const total = subtotal + vat
 
   return (
     <main
@@ -145,11 +147,19 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
                 {formatCurrency(subtotal, invoice.currency)}
               </span>
             </div>
+            {invoice.vatRate > 0 && (
+              <div className="flex gap-8 items-center">
+                <span className="text-[12px] text-[#888888]">VAT {invoice.vatRate}%</span>
+                <span className="text-[12px] font-medium text-[#111111] w-32 text-right">
+                  {formatCurrency(vat, invoice.currency)}
+                </span>
+              </div>
+            )}
             <div className="w-48 h-px bg-[#E5E5E5]" />
             <div className="flex gap-8 items-center">
               <span className="text-[15px] font-bold text-[#111111] tracking-tight">Total</span>
               <span className="text-[20px] font-bold text-[#111111] tracking-tight w-32 text-right">
-                {formatCurrency(subtotal, invoice.currency)}
+                {formatCurrency(total, invoice.currency)}
               </span>
             </div>
           </div>

@@ -209,6 +209,16 @@ export default function Home() {
                   </Select>
                 </Field>
               </div>
+              <Field label="VAT %">
+                <Input
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={invoice.vatRate || ''}
+                  onChange={(e) => update('vatRate', parseFloat(e.target.value) || 0)}
+                  placeholder="0"
+                />
+              </Field>
             </div>
           </section>
 
