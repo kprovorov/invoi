@@ -41,7 +41,10 @@ function DatePicker({ value, onChange, placeholder = 'Pick a date', className }:
           selected={toDate(value)}
           onSelect={(date) => {
             if (date) {
-              onChange(date.toISOString().split('T')[0])
+              const y = date.getFullYear()
+              const m = String(date.getMonth() + 1).padStart(2, '0')
+              const d = String(date.getDate()).padStart(2, '0')
+              onChange(`${y}-${m}-${d}`)
               setOpen(false)
             }
           }}
