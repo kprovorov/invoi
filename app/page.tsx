@@ -392,17 +392,6 @@ export default function Home() {
 
         </div>
 
-        {/* Canvas toolbar */}
-        <div className="fixed top-4 right-4 bg-white border border-[#E5E5E5] rounded-lg px-3 py-1.5 flex items-center gap-2 shadow-sm print:hidden">
-          <span className="text-[12px] font-medium text-[#888888]">100%</span>
-          <div className="w-px h-3 bg-[#E5E5E5]" />
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <rect x="1" y="1" width="5" height="5" rx="1" stroke="#888888" strokeWidth="1.2" />
-            <rect x="8" y="1" width="5" height="5" rx="1" stroke="#888888" strokeWidth="1.2" />
-            <rect x="1" y="8" width="5" height="5" rx="1" stroke="#888888" strokeWidth="1.2" />
-            <rect x="8" y="8" width="5" height="5" rx="1" stroke="#888888" strokeWidth="1.2" />
-          </svg>
-        </div>
       </main>
     </div>
   )
