@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { DatePicker } from '@/components/ui/date-picker'
 
 function Field({
   label,
@@ -247,21 +248,18 @@ export default function Home() {
                   />
                 </Field>
                 <Field label="Issue Date">
-                  <Input
-                    type="date"
-                    className="overflow-hidden"
+                  <DatePicker
                     value={invoice.issueDate}
-                    onChange={(e) => update('issueDate', e.target.value)}
+                    onChange={(v) => update('issueDate', v)}
                   />
                 </Field>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <Field label="Due Date">
-                  <Input
-                    type="date"
-                    className="overflow-hidden"
+                  <DatePicker
                     value={invoice.dueDate}
-                    onChange={(e) => update('dueDate', e.target.value)}
+                    onChange={(v) => update('dueDate', v)}
+                    placeholder="No due date"
                   />
                 </Field>
                 <Field label="Currency">
