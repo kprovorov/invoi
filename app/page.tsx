@@ -270,7 +270,8 @@ export default function Home() {
                 </Field>
                 <Field label="Currency" className="flex-1">
                   <select
-                    className={INPUT_CLASS}
+                    className={cn(INPUT_CLASS, 'appearance-none pr-8 cursor-pointer')}
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
                     value={invoice.currency}
                     onChange={(e) => update('currency', e.target.value)}
                   >
