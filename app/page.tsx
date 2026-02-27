@@ -46,6 +46,17 @@ function Field({
 export default function Home() {
   const { invoice, update, updateItem, addItem, removeItem } = useInvoice()
 
+  const handleDownload = () => {
+    const original = document.title
+    const parts = [invoice.invoiceNumber, invoice.fromName].filter(Boolean)
+    document.title = parts.length > 0 ? parts.join(' - ') : 'invoice'
+    window.print()
+    window.onafterprint = () => {
+      document.title = original
+      window.onafterprint = null
+    }
+  }
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen md:h-screen md:overflow-hidden bg-[#F5F5F5] print:bg-white">
       {/* ── SIDEBAR ── */}
@@ -258,7 +269,7 @@ export default function Home() {
         {/* Download button */}
         <div className="px-6 pb-6 pt-4 border-t border-[#E5E5E5] shrink-0">
           <Button
-            onClick={() => window.print()}
+            onClick={handleDownload}
             className="w-full h-11 rounded-[10px] text-[14px] font-semibold"
           >
             <Download size={15} strokeWidth={2} />
