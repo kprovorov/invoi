@@ -162,25 +162,25 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
               </p>
               {invoice.bankBeneficiary && (
                 <div className="flex gap-2">
-                  <span className="text-[12px] text-[#888888] w-24 shrink-0">Beneficiary</span>
+                  <span className="text-[12px] text-[#888888] w-36 shrink-0">Beneficiary</span>
                   <span className="text-[12px] text-[#111111]">{invoice.bankBeneficiary}</span>
                 </div>
               )}
               {invoice.bankName && (
                 <div className="flex gap-2">
-                  <span className="text-[12px] text-[#888888] w-24 shrink-0">Bank</span>
+                  <span className="text-[12px] text-[#888888] w-36 shrink-0">Bank</span>
                   <span className="text-[12px] text-[#111111]">{invoice.bankName}</span>
                 </div>
               )}
               {invoice.bankAccount && (
                 <div className="flex gap-2">
-                  <span className="text-[12px] text-[#888888] w-24 shrink-0">IBAN</span>
+                  <span className="text-[12px] text-[#888888] w-36 shrink-0">Account / IBAN</span>
                   <span className="text-[12px] text-[#111111]">{invoice.bankAccount}</span>
                 </div>
               )}
               {invoice.bankSwift && (
                 <div className="flex gap-2">
-                  <span className="text-[12px] text-[#888888] w-24 shrink-0">SWIFT / BIC</span>
+                  <span className="text-[12px] text-[#888888] w-36 shrink-0">SWIFT / BIC</span>
                   <span className="text-[12px] text-[#111111]">{invoice.bankSwift}</span>
                 </div>
               )}
