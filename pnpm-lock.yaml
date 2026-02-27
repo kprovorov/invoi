@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/lilex':
+        specifier: ^5.2.1
+        version: 5.2.1
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -274,6 +277,9 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@fontsource/lilex@5.2.1':
+    resolution: {integrity: sha512-KnfU2zYPB8JWvxbB4SOn3dR3vivBGVPUGHvOIi176b8Uus4iOL2lbF6lrKf8BZlNSM/qeAxYmaMmqnhwZ/KMzQ==}
 
   '@hono/node-server@1.19.9':
     resolution: {integrity: sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw==}
@@ -4028,6 +4034,8 @@ snapshots:
       react-dom: 19.2.3(react@19.2.3)
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@fontsource/lilex@5.2.1': {}
 
   '@hono/node-server@1.19.9(hono@4.12.3)':
     dependencies:
