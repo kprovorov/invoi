@@ -5,9 +5,16 @@ import { Plus, Trash2, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { type Invoice, type LineItem, newLineItem, defaultInvoice } from '@/lib/types'
 import { loadInvoice, saveInvoice } from '@/lib/store'
-
-const INPUT_CLASS =
-  'h-9 w-full border border-[#E5E5E5] rounded-lg bg-[#FAFAFA] px-3 text-[13px] text-[#111111] font-[family-name:var(--font-mono)] focus:outline-none focus:border-[#111111] placeholder:text-[#BBBBBB] transition-colors'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 function Field({
   label,
@@ -20,7 +27,7 @@ function Field({
 }) {
   return (
     <div className={cn('flex flex-col gap-1', className)}>
-      <label className="text-[12px] font-medium text-[#555555]">{label}</label>
+      <Label>{label}</Label>
       {children}
     </div>
   )
@@ -132,16 +139,14 @@ export default function Home() {
             </h3>
             <div className="space-y-2">
               <Field label="Company name">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.fromName}
                   onChange={(e) => update('fromName', e.target.value)}
                   placeholder="Acme Studio"
                 />
               </Field>
               <Field label="Email">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   type="email"
                   value={invoice.fromEmail}
                   onChange={(e) => update('fromEmail', e.target.value)}
@@ -149,16 +154,14 @@ export default function Home() {
                 />
               </Field>
               <Field label="Address">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.fromAddress}
                   onChange={(e) => update('fromAddress', e.target.value)}
                   placeholder="123 Design Ave, San Francisco"
                 />
               </Field>
               <Field label="Phone">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   type="tel"
                   value={invoice.fromPhone}
                   onChange={(e) => update('fromPhone', e.target.value)}
@@ -175,16 +178,14 @@ export default function Home() {
             </h3>
             <div className="space-y-2">
               <Field label="Client name">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.toName}
                   onChange={(e) => update('toName', e.target.value)}
                   placeholder="Meridian Group"
                 />
               </Field>
               <Field label="Email">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   type="email"
                   value={invoice.toEmail}
                   onChange={(e) => update('toEmail', e.target.value)}
@@ -192,8 +193,7 @@ export default function Home() {
                 />
               </Field>
               <Field label="Address">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.toAddress}
                   onChange={(e) => update('toAddress', e.target.value)}
                   placeholder="456 Client St, New York"
@@ -209,24 +209,21 @@ export default function Home() {
             </h3>
             <div className="space-y-2">
               <Field label="Bank name">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.bankName}
                   onChange={(e) => update('bankName', e.target.value)}
                   placeholder="First National Bank"
                 />
               </Field>
               <Field label="Account number / IBAN">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.bankAccount}
                   onChange={(e) => update('bankAccount', e.target.value)}
                   placeholder="GB29 NWBK 6016 1331 9268 19"
                 />
               </Field>
               <Field label="SWIFT / BIC">
-                <input
-                  className={INPUT_CLASS}
+                <Input
                   value={invoice.bankSwift}
                   onChange={(e) => update('bankSwift', e.target.value)}
                   placeholder="NWBKGB2L"
@@ -243,16 +240,14 @@ export default function Home() {
             <div className="space-y-2">
               <div className="flex gap-2">
                 <Field label="Invoice #" className="flex-1">
-                  <input
-                    className={INPUT_CLASS}
+                  <Input
                     value={invoice.invoiceNumber}
                     onChange={(e) => update('invoiceNumber', e.target.value)}
                     placeholder="INV-0001"
                   />
                 </Field>
                 <Field label="Issue Date" className="flex-1">
-                  <input
-                    className={INPUT_CLASS}
+                  <Input
                     type="date"
                     value={invoice.issueDate}
                     onChange={(e) => update('issueDate', e.target.value)}
@@ -261,24 +256,23 @@ export default function Home() {
               </div>
               <div className="flex gap-2">
                 <Field label="Due Date" className="flex-1">
-                  <input
-                    className={INPUT_CLASS}
+                  <Input
                     type="date"
                     value={invoice.dueDate}
                     onChange={(e) => update('dueDate', e.target.value)}
                   />
                 </Field>
                 <Field label="Currency" className="flex-1">
-                  <select
-                    className={cn(INPUT_CLASS, 'appearance-none pr-8 cursor-pointer')}
-                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
-                    value={invoice.currency}
-                    onChange={(e) => update('currency', e.target.value)}
-                  >
-                    {CURRENCIES.map((c) => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
+                  <Select value={invoice.currency} onValueChange={(v) => update('currency', v)}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {CURRENCIES.map((c) => (
+                        <SelectItem key={c} value={c}>{c}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </Field>
               </div>
             </div>
@@ -303,14 +297,14 @@ export default function Home() {
               {/* Item rows */}
               {invoice.lineItems.map((item) => (
                 <div key={item.id} className="flex gap-2 items-center">
-                  <input
-                    className={cn(INPUT_CLASS, 'flex-1')}
+                  <Input
+                    className="flex-1"
                     value={item.description}
                     onChange={(e) => updateItem(item.id, 'description', e.target.value)}
                     placeholder="Item description"
                   />
-                  <input
-                    className={cn(INPUT_CLASS, 'w-10 px-0 text-center')}
+                  <Input
+                    className="w-10 px-0 text-center"
                     type="number"
                     min="0"
                     value={item.quantity}
@@ -318,8 +312,8 @@ export default function Home() {
                       updateItem(item.id, 'quantity', parseFloat(e.target.value) || 0)
                     }
                   />
-                  <input
-                    className={cn(INPUT_CLASS, 'w-[72px] px-2 text-right')}
+                  <Input
+                    className="w-[72px] px-2 text-right"
                     type="number"
                     min="0"
                     value={item.rate}
@@ -328,37 +322,40 @@ export default function Home() {
                     }
                     placeholder="0"
                   />
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon-xs"
                     onClick={() => removeItem(item.id)}
-                    className="w-5 flex items-center justify-center text-[#CCCCCC] hover:text-[#888888] transition-colors shrink-0"
+                    className="text-[#CCCCCC] hover:text-[#888888] hover:bg-transparent shrink-0"
                     aria-label="Remove item"
                   >
                     <Trash2 size={13} />
-                  </button>
+                  </Button>
                 </div>
               ))}
 
               {/* Add item */}
-              <button
+              <Button
+                variant="outline"
                 onClick={addItem}
-                className="w-full h-[34px] border border-dashed border-[#CCCCCC] rounded-lg flex items-center justify-center gap-1.5 text-[12px] font-medium text-[#888888] hover:border-[#888888] hover:text-[#555555] transition-colors mt-1"
+                className="w-full h-[34px] border-dashed border-[#CCCCCC] text-[12px] font-medium text-[#888888] hover:border-[#888888] hover:text-[#555555] hover:bg-transparent mt-1"
               >
                 <Plus size={13} />
                 Add item
-              </button>
+              </Button>
             </div>
           </section>
         </div>
 
         {/* Download button */}
         <div className="px-6 pb-6 pt-4 border-t border-[#E5E5E5] shrink-0">
-          <button
+          <Button
             onClick={() => window.print()}
-            className="w-full h-11 bg-[#111111] rounded-[10px] flex items-center justify-center gap-2 text-[14px] font-semibold text-white hover:bg-[#333333] transition-colors"
+            className="w-full h-11 rounded-[10px] text-[14px] font-semibold"
           >
             <Download size={15} strokeWidth={2} />
             Download PDF
-          </button>
+          </Button>
         </div>
       </aside>
 
