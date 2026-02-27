@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
+import { Twitter, Github } from 'lucide-react'
 import { type Invoice } from '@/lib/types'
 import { PAPER_W, PAPER_H } from '@/lib/constants'
 import { formatDate, formatCurrency } from '@/lib/utils'
@@ -181,6 +182,33 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
           )}
         </div>
       </div>
+
+      {/* Footer */}
+      <div style={{ width: PAPER_W * scale }} className="flex items-center justify-between px-1 mt-4 print:hidden">
+          <span className="text-[11px] text-[#AAAAAA]">
+            © {new Date().getFullYear()} invoi.xyz by Kirill Provorov
+          </span>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://x.com/kprovorov"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#BBBBBB] hover:text-[#888888] transition-colors"
+              aria-label="Twitter / X"
+            >
+              <Twitter size={13} />
+            </a>
+            <a
+              href="https://github.com/kprovorov/invoi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#BBBBBB] hover:text-[#888888] transition-colors"
+              aria-label="GitHub"
+            >
+              <Github size={13} />
+            </a>
+          </div>
+        </div>
     </main>
   )
 }
