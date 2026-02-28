@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode } from 'react'
+import { type ReactNode, useEffect, useRef } from 'react'
 import { Plus, Trash2, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useInvoice } from '@/lib/use-invoice'
@@ -44,7 +44,22 @@ function Field({
 }
 
 export default function Home() {
-  const { invoice, update, updateItem, addItem, removeItem } = useInvoice()
+  const { invoice, loaded, update, updateItem, addItem, removeItem } = useInvoice()
+  const autoPrint = useRef(typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('print') === 'true')
+
+  useEffect(() => {
+    if (!loaded || !autoPrint.current) return
+    const timer = setTimeout(() => {
+      const parts = [invoice.invoiceNumber, invoice.fromName].filter(Boolean)
+      document.title = parts.length > 0 ? parts.join(' - ') : 'invoice'
+      window.print()
+      window.onafterprint = () => {
+        document.title = 'invoi.xyz'
+        window.onafterprint = null
+      }
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [loaded])
 
   const handleDownload = () => {
     const original = document.title
