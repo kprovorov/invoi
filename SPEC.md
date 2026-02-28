@@ -42,6 +42,7 @@ struct Invoice: Codable {
     var issueDate: String      // "2026-03-01" (YYYY-MM-DD)
     var dueDate: String        // "2026-03-31" or "" if none
     var currency: String       // "USD"
+    var vatRate: Double        // 0 = no VAT, 20 = 20% VAT
 
     // Line items
     var lineItems: [LineItem]
@@ -59,6 +60,7 @@ struct Invoice: Codable {
 - `issueDate`: today's date in `YYYY-MM-DD`
 - `dueDate`: `""` (empty — no due date)
 - `currency`: `"USD"`
+- `vatRate`: `0`
 - `lineItems`: one empty item with `quantity: 1`, `rate: 0`
 - All other fields: `""`
 
@@ -78,11 +80,24 @@ struct Invoice: Codable {
 Picker should include these currency codes in this order:
 
 ```
-USD, EUR, GBP, CHF, CAD, AUD, NZD,
-JPY, CNY, HKD, SGD, KRW,
-INR, AED, SAR, ILS,
-SEK, NOK, DKK, PLN, CZK, UAH,
-BRL, MXN, ZAR, TRY
+// Major global
+USD, EUR, GBP, CHF, JPY, CNY
+// Anglosphere
+CAD, AUD, NZD, SGD, HKD
+// Europe
+SEK, NOK, DKK, PLN, CZK, HUF, RON, BGN, HRK
+// Eastern Europe / CIS
+UAH, GEL, AMD, AZN, KZT
+// Middle East
+AED, SAR, ILS, QAR, KWD, BHD, OMR
+// South & East Asia
+INR, IDR, PHP, THB, MYR, VND, BDT, PKR, KRW, TWD
+// Americas
+BRL, MXN, ARS, CLP, COP, PEN
+// Africa
+ZAR, NGN, KES, GHS
+// Other
+TRY
 ```
 
 ---
@@ -120,6 +135,7 @@ Two-column row layout (side by side where space allows):
 - **Issue Date** — date picker, defaults to today
 - **Due Date** — date picker, placeholder "No due date", clearable
 - **Currency** — picker/wheel with the currency list above
+- **VAT %** — number input, placeholder `0`, defaults to `0` (hidden in preview when 0)
 
 ### 5. Line Items
 Each item row has three inputs:
@@ -175,9 +191,9 @@ The preview renders the invoice as a document that looks exactly like the PDF ou
 
 **Totals block** — right-aligned:
 - Subtotal label + value (12pt)
+- "VAT X%" label + value (12pt) — hidden when `vatRate` is 0
 - Thin `#E5E5E5` separator line (~192pt wide)
-- "Total" (bold, 15pt) + total amount (bold, 20pt)
-- Subtotal = Total (no tax in this version)
+- "Total" (bold, 15pt) + total amount (bold, 20pt) — total = subtotal + VAT
 
 **Payment Details** (only shown if at least one bank field is filled):
 - Top border `#E5E5E5`, section label "PAYMENT DETAILS" (uppercase, 10pt, muted)

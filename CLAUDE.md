@@ -40,11 +40,12 @@ Next.js 16 app using the App Router (`app/` directory). React 19, TypeScript (st
 
 ```ts
 interface Invoice {
-  fromName, fromEmail, fromPhone, fromAddress   // sender
-  toName, toEmail, toAddress                    // client
-  invoiceNumber, issueDate, dueDate, currency   // details
-  lineItems: LineItem[]                         // { id, description, quantity, rate }
-  bankName, bankAccount, bankSwift              // payment details
+  fromName, fromEmail, fromPhone, fromAddress       // sender
+  toName, toEmail, toAddress                        // client
+  invoiceNumber, issueDate, dueDate, currency       // details
+  vatRate: number                                   // VAT % (0 = hidden)
+  lineItems: LineItem[]                             // { id, description, quantity, rate }
+  bankBeneficiary, bankName, bankAccount, bankSwift // payment details (SEPA-ready)
 }
 ```
 
@@ -71,3 +72,7 @@ interface Invoice {
 ## IndexedDB
 
 `lib/store.ts` opens `invoi-db` (version 1), object store `data`, single key `current-invoice`. Auto-save is debounced 400ms after any state change, managed inside `useInvoice()`. Silently fails if unavailable.
+
+## URL Params API
+
+`useInvoice()` reads URL params on load and applies them over saved state. Any invoice field name is a valid param (e.g. `?fromName=Acme&vatRate=20`). The URL stays in sync as the user types via `history.replaceState`. Non-invoice params (e.g. `print=true`) are preserved. `?print=true` auto-triggers `window.print()` after load.
