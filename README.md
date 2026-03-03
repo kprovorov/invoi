@@ -82,6 +82,16 @@ https://invoi.xyz?fromName=Acme&currency=EUR&vatRate=20
 | `bankSwift` | SWIFT / BIC |
 | `print` | Set to `true` to auto-open print dialogue |
 
+## Claude Skill
+
+A `create-invoice` skill is available for AI coding agents. It generates a pre-filled invoi.xyz URL from invoice details you describe in natural language.
+
+```bash
+npx skills add kprovorov/invoi --skill create-invoice
+```
+
+Once installed, use `/create-invoice` in your AI agent.
+
 ## PDF Export
 
 Invoices are exported via `window.print()`. The preview renders at true A4 dimensions (`794×1123px`) and scales to fit the viewport — the print stylesheet resets the transform so the browser outputs exact A4. Chrome and Edge suppress browser headers/footers when `@page { margin: 0 }` is set.
