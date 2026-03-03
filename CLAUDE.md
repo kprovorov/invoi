@@ -76,3 +76,5 @@ interface Invoice {
 ## URL Params API
 
 `useInvoice()` reads URL params on load and applies them over saved state. Any invoice field name is a valid param (e.g. `?fromName=Acme&vatRate=20`). The URL stays in sync as the user types via `history.replaceState`. Non-invoice params (e.g. `print=true`) are preserved. `?print=true` auto-triggers `window.print()` after load.
+
+A `?` button in the sidebar header opens a cheatsheet modal (shadcn Dialog) listing all available params. Dialog state and the button live in `app/page.tsx`.

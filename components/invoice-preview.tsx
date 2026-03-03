@@ -6,7 +6,7 @@ import { type Invoice } from '@/lib/types'
 import { PAPER_W, PAPER_H } from '@/lib/constants'
 import { formatDate, formatCurrency } from '@/lib/utils'
 
-export function InvoicePreview({ invoice }: { invoice: Invoice }) {
+export function InvoicePreview({ invoice, onOpenCheatsheet }: { invoice: Invoice; onOpenCheatsheet?: () => void }) {
   const canvasRef = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(1)
 
@@ -201,9 +201,22 @@ export function InvoicePreview({ invoice }: { invoice: Invoice }) {
 
       {/* Footer */}
       <div style={{ width: PAPER_W * scale }} className="flex items-center justify-between px-1 mt-4 print:hidden">
-          <span className="text-[11px] text-[#AAAAAA]">
-            © {new Date().getFullYear()} invoi.xyz by Kirill Provorov
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-[11px] text-[#AAAAAA]">
+              © {new Date().getFullYear()} invoi.xyz by Kirill Provorov
+            </span>
+            {onOpenCheatsheet && (
+              <>
+                <span className="text-[11px] text-[#AAAAAA]">|</span>
+                <button
+                  onClick={onOpenCheatsheet}
+                  className="text-[11px] text-[#AAAAAA] hover:text-[#888888] hover:underline transition-colors cursor-pointer"
+                >
+                  API
+                </button>
+              </>
+            )}
+          </div>
           <div className="flex items-center gap-3">
             <a
               href="https://x.com/kprovorov"

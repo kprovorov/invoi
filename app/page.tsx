@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, useEffect, useRef } from 'react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { Plus, Trash2, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useInvoice } from '@/lib/use-invoice'
@@ -17,6 +17,12 @@ import {
 } from '@/components/ui/select'
 import { DatePicker } from '@/components/ui/date-picker'
 import { InvoicePreview } from '@/components/invoice-preview'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 function SectionHeader({ children }: { children: ReactNode }) {
   return (
@@ -46,6 +52,7 @@ function Field({
 export default function Home() {
   const { invoice, loaded, update, updateItem, addItem, removeItem } = useInvoice()
   const autoPrint = useRef(typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('print') === 'true')
+  const [cheatsheetOpen, setCheatsheetOpen] = useState(false)
 
   useEffect(() => {
     if (!loaded || !autoPrint.current) return
@@ -310,7 +317,47 @@ export default function Home() {
         </div>
       </aside>
 
-      <InvoicePreview invoice={invoice} />
+      <InvoicePreview invoice={invoice} onOpenCheatsheet={() => setCheatsheetOpen(true)} />
+
+      <Dialog open={cheatsheetOpen} onOpenChange={setCheatsheetOpen}>
+        <DialogContent className="max-w-md font-mono">
+          <DialogHeader>
+            <DialogTitle className="text-[15px] font-bold tracking-tight">URL Params API</DialogTitle>
+          </DialogHeader>
+          <p className="text-[12px] text-[#888888] -mt-1">
+            Pre-fill any field by adding params to the URL. Params stay in sync as you type.
+          </p>
+          <div className="text-[12px] bg-[#F5F5F5] rounded-md px-3 py-2 text-[#111111] break-all">
+            invoi.xyz?fromName=Acme&amp;currency=EUR
+          </div>
+          <div className="flex flex-col gap-1 mt-1">
+            {[
+              ['fromName', 'Company name'],
+              ['fromEmail', 'Company email'],
+              ['fromPhone', 'Company phone'],
+              ['fromAddress', 'Company address'],
+              ['toName', 'Client name'],
+              ['toEmail', 'Client email'],
+              ['toAddress', 'Client address'],
+              ['invoiceNumber', 'Invoice number'],
+              ['issueDate', 'Issue date (YYYY-MM-DD)'],
+              ['dueDate', 'Due date (YYYY-MM-DD)'],
+              ['currency', 'Currency code'],
+              ['vatRate', 'VAT %'],
+              ['bankBeneficiary', 'Beneficiary'],
+              ['bankName', 'Bank name'],
+              ['bankAccount', 'Account / IBAN'],
+              ['bankSwift', 'SWIFT / BIC'],
+              ['print', 'Set to true to auto-print'],
+            ].map(([param, label]) => (
+              <div key={param} className="flex gap-3 items-baseline">
+                <span className="text-[12px] text-[#111111] w-36 shrink-0">{param}</span>
+                <span className="text-[12px] text-[#888888]">{label}</span>
+              </div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
