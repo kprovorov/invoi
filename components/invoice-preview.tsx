@@ -87,7 +87,7 @@ export function InvoicePreview({ invoice, onOpenCheatsheet }: { invoice: Invoice
                   <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-1">
                     Issue Date
                   </p>
-                  <p className="text-[12px] font-medium text-[#111111]">
+                  <p className="text-[12px] font-medium text-[#111111]" suppressHydrationWarning>
                     {formatDate(invoice.issueDate)}
                   </p>
                 </div>
@@ -97,7 +97,7 @@ export function InvoicePreview({ invoice, onOpenCheatsheet }: { invoice: Invoice
                   <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-1">
                     Due Date
                   </p>
-                  <p className="text-[12px] font-medium text-[#111111]">
+                  <p className="text-[12px] font-medium text-[#111111]" suppressHydrationWarning>
                     {formatDate(invoice.dueDate)}
                   </p>
                 </div>

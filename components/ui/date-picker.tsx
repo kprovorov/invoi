@@ -31,7 +31,7 @@ function DatePicker({ value, onChange, placeholder = 'Pick a date', className }:
             className
           )}
         >
-          <span>{value ? formatDate(value) : placeholder}</span>
+          <span suppressHydrationWarning>{value ? formatDate(value) : placeholder}</span>
           <CalendarIcon size={13} className="text-[#888888] shrink-0" />
         </button>
       </PopoverTrigger>
