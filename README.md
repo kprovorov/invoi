@@ -78,6 +78,7 @@ https://invoi.xyz?fromName=Acme&currency=EUR&vatRate=20
 | `vatRate` | VAT % |
 | `bankBeneficiary` | Beneficiary |
 | `bankName` | Bank name |
+| `bankSortCode` | Sort Code / Routing |
 | `bankAccount` | Account / IBAN |
 | `bankSwift` | SWIFT / BIC |
 | `print` | Set to `true` to auto-open print dialogue |

@@ -37,6 +37,7 @@ Generate a pre-filled invoi.xyz URL from the invoice details the user provides.
 | `vatRate` | VAT percentage as a number (e.g. 20) |
 | `bankBeneficiary` | Account holder / beneficiary name |
 | `bankName` | Bank name |
+| `bankSortCode` | Sort code (UK) or routing number (US) |
 | `bankAccount` | Account number or IBAN |
 | `bankSwift` | SWIFT / BIC code |
 | `print` | Set to `true` to auto-open print dialogue on load |

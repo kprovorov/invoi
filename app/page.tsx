@@ -174,6 +174,13 @@ export default function Home() {
                   placeholder="First National Bank"
                 />
               </Field>
+              <Field label="Sort Code / Routing">
+                <Input
+                  value={invoice.bankSortCode}
+                  onChange={(e) => update('bankSortCode', e.target.value)}
+                  placeholder="20-00-00"
+                />
+              </Field>
               <Field label="Account number / IBAN">
                 <Input
                   value={invoice.bankAccount}
@@ -346,6 +353,7 @@ export default function Home() {
               ['vatRate', 'VAT %'],
               ['bankBeneficiary', 'Beneficiary'],
               ['bankName', 'Bank name'],
+              ['bankSortCode', 'Sort Code / Routing'],
               ['bankAccount', 'Account / IBAN'],
               ['bankSwift', 'SWIFT / BIC'],
               ['print', 'Set to true to auto-print'],

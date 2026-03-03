@@ -21,6 +21,7 @@ export interface Invoice {
   lineItems: LineItem[]
   bankBeneficiary: string
   bankName: string
+  bankSortCode: string
   bankAccount: string
   bankSwift: string
 }
@@ -46,6 +47,7 @@ export const defaultInvoice: Invoice = {
   lineItems: [newLineItem()],
   bankBeneficiary: '',
   bankName: '',
+  bankSortCode: '',
   bankAccount: '',
   bankSwift: '',
 }

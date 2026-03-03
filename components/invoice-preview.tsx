@@ -165,7 +165,7 @@ export function InvoicePreview({ invoice, onOpenCheatsheet }: { invoice: Invoice
           </div>
 
           {/* Bank details */}
-          {(invoice.bankBeneficiary || invoice.bankName || invoice.bankAccount || invoice.bankSwift) && (
+          {(invoice.bankBeneficiary || invoice.bankName || invoice.bankSortCode || invoice.bankAccount || invoice.bankSwift) && (
             <div className="border-t border-[#E5E5E5] pt-6 flex flex-col gap-1.5">
               <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-1">
                 Payment Details
@@ -180,6 +180,12 @@ export function InvoicePreview({ invoice, onOpenCheatsheet }: { invoice: Invoice
                 <div className="flex gap-2">
                   <span className="text-[12px] text-[#888888] w-36 shrink-0">Bank</span>
                   <span className="text-[12px] text-[#111111]">{invoice.bankName}</span>
+                </div>
+              )}
+              {invoice.bankSortCode && (
+                <div className="flex gap-2">
+                  <span className="text-[12px] text-[#888888] w-36 shrink-0">Sort Code / Routing</span>
+                  <span className="text-[12px] text-[#111111]">{invoice.bankSortCode}</span>
                 </div>
               )}
               {invoice.bankAccount && (

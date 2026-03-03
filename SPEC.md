@@ -126,6 +126,7 @@ The form is a scrollable list of grouped sections. Each field is a standard text
 |---|---|---|
 | Beneficiary | Acme Studio Ltd. | Default |
 | Bank name | First National Bank | Default |
+| Sort Code / Routing | 20-00-00 | Default |
 | Account number / IBAN | GB29 NWBK 6016 1331 9268 19 | Default |
 | SWIFT / BIC | NWBKGB2L | Default |
 
