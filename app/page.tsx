@@ -319,7 +319,7 @@ export default function Home() {
               onChange={(e) => update('note', e.target.value)}
               placeholder="Payment terms, thank you note, or any additional details…"
               rows={3}
-              className="w-full resize-none rounded-[8px] border border-[#E5E5E5] bg-[#FAFAFA] px-3 py-2 text-[13px] text-[#111111] placeholder:text-[#BBBBBB] focus:outline-none focus:ring-2 focus:ring-[#111111] focus:border-transparent transition-shadow"
+              className="w-full resize-none rounded-lg border border-[#E5E5E5] bg-[#FAFAFA] px-3 py-2 text-[13px] text-[#111111] placeholder:text-[#BBBBBB] focus:outline-none focus:border-[#111111] transition-colors"
             />
           </section>
         </div>
