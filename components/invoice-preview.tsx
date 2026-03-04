@@ -202,6 +202,16 @@ export function InvoicePreview({ invoice, onOpenCheatsheet }: { invoice: Invoice
               )}
             </div>
           )}
+
+          {/* Note */}
+          {invoice.note && (
+            <div className="border-t border-[#E5E5E5] pt-6 mt-6">
+              <p className="text-[10px] font-semibold text-[#888888] tracking-[0.1em] uppercase mb-2">
+                Note
+              </p>
+              <p className="text-[12px] text-[#555555] whitespace-pre-wrap">{invoice.note}</p>
+            </div>
+          )}
         </div>
       </div>
 

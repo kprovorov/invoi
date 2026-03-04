@@ -14,6 +14,7 @@ Free, open-source invoice generator. No account, no backend, no tracking beyond 
 - 56 currencies supported
 - VAT / tax rate field
 - Bank transfer & SEPA payment details (Beneficiary, IBAN, BIC)
+- Note field for custom text (payment terms, thank-you note, etc.)
 - URL query params API — pre-fill any field via URL, auto-print with `?print=true`
 - Works on mobile
 
@@ -81,6 +82,7 @@ https://invoi.xyz?fromName=Acme&currency=EUR&vatRate=20
 | `bankSortCode` | Sort Code / Routing |
 | `bankAccount` | Account / IBAN |
 | `bankSwift` | SWIFT / BIC |
+| `note` | Note / additional details |
 | `print` | Set to `true` to auto-open print dialogue |
 
 ## Claude Skill

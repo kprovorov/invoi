@@ -45,7 +45,8 @@ interface Invoice {
   invoiceNumber, issueDate, dueDate, currency       // details
   vatRate: number                                   // VAT % (0 = hidden)
   lineItems: LineItem[]                             // { id, description, quantity, rate }
-  bankBeneficiary, bankName, bankAccount, bankSwift // payment details (SEPA-ready)
+  bankBeneficiary, bankName, bankSortCode, bankAccount, bankSwift // payment details (SEPA-ready)
+  notes: string                                     // free-text notes (hidden when empty)
 }
 ```
 

@@ -40,6 +40,7 @@ Generate a pre-filled invoi.xyz URL from the invoice details the user provides.
 | `bankSortCode` | Sort code (UK) or routing number (US) |
 | `bankAccount` | Account number or IBAN |
 | `bankSwift` | SWIFT / BIC code |
+| `note` | Note / additional details (payment terms, thank-you note, etc.) |
 | `print` | Set to `true` to auto-open print dialogue on load |
 
 ## Rules
